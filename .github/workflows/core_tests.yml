@@ -358,4 +358,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Token is created automatically by Github Actions, no other config needed
           publish_dir: ./docs/_build/html
-          destination_dir: ${{ github.ref_name }}
+          destination_dir: develop
