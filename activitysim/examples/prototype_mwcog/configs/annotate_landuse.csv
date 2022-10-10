@@ -7,3 +7,4 @@ density_index,density_index,(household_density *employment_density) / (household
 topology (assume flat),TOPOLOGY,1
 zero out land use for zero area,Park_Acres,"np.where(land_use.LANDAREA==0,0,land_use.Park_Acres)"
 zero out land use for zero area,GC_Acres,"np.where(land_use.LANDAREA==0,0,land_use.GC_Acres)"
+Employment adjustment for WFH and in-commuters,emp_adjust,land_use.JURCODE.map(TCADJUST)
