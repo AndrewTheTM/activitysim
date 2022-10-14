@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Models &#8212; ActivitySim 1.1.1.dev71+g4c6c64be</title>
+    <title>Models &#8212; ActivitySim 1.1.1.dev72+g46487365</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -1476,6 +1476,7 @@ follows:</p>
 <li><p>take as input an interaction coefficients table and then programmatically produce and write out the expression files for households size 1, 2, 3, 4, and 5 models independent of one another</p></li>
 <li><p>select households of size 1, join all required person attributes, and then read and solve the automatically generated expressions</p></li>
 <li><p>repeat for households size 2, 3, 4, and 5. Each model is independent of one another.</p></li>
+<li><p>households larger than 5 people use a simple probability to determine M/N/H day pattern (found in cdap_fixed_relative_proportions.csv) for persons ranked past 5</p></li>
 </ul>
 <p>The main interface to the CDAP model is the <a class="reference internal" href="#activitysim.abm.models.util.cdap.run_cdap" title="activitysim.abm.models.util.cdap.run_cdap"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_cdap()</span></code></a>
 function.  This function is called by the Inject step <code class="docutils literal notranslate"><span class="pre">cdap_simulate</span></code> which is
@@ -3830,7 +3831,7 @@ DataFrame and the values are the index of the alts DataFrame.</p>
     <div class="footer-item">
       <!-- This will display the version of the docs -->
 <p class="last-updated">
-ActivitySim 1.1.1.dev71+g4c6c64be, documentation last updated Oct 10, 2022.<br/>
+ActivitySim 1.1.1.dev72+g46487365, documentation last updated Oct 14, 2022.<br/>
 </p>
     </div>
     
