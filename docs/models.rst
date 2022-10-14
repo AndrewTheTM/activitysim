@@ -422,6 +422,7 @@ The CDAP model is a sequence of vectorized table operations:
 * take as input an interaction coefficients table and then programmatically produce and write out the expression files for households size 1, 2, 3, 4, and 5 models independent of one another
 * select households of size 1, join all required person attributes, and then read and solve the automatically generated expressions
 * repeat for households size 2, 3, 4, and 5. Each model is independent of one another.
+* households larger than 5 people use a simple probability to determine M/N/H day pattern (found in cdap_fixed_relative_proportions.csv) for persons ranked past 5
 
 The main interface to the CDAP model is the :py:func:`~activitysim.abm.models.util.cdap.run_cdap`
 function.  This function is called by the Inject step ``cdap_simulate`` which is
