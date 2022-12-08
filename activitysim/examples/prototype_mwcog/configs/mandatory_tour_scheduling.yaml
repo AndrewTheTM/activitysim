@@ -20,6 +20,8 @@ SIMULATE_CHOOSER_COLUMNS:
   - school_zone_id
   - home_zone_id
   - TAZ
+  - transit_pass_ownership
+  - transit_pass_subsidy
   
 LOGSUM_SETTINGS: tour_mode_choice.yaml
 
@@ -30,7 +32,7 @@ TOUR_SPEC_SEGMENTS:
 
 ALTS_PREPROCESSOR:
   work:
-    SPEC: mandatory_tour_scheduling_annotate_tours_preprocessor.csv
+    SPEC: mandatory_tour_scheduling_annotate_alts_preprocessor.csv
     DF: alt_tdd
 
 SPEC_SEGMENTS:
@@ -43,13 +45,6 @@ SPEC_SEGMENTS:
   univ:
     'SPEC': tour_scheduling_university.csv
     'COEFFICIENTS': tour_scheduling_university_coeffs.csv
-
-#SPEC:
-#  work: tour_scheduling_work.csv
-#  school: tour_scheduling_school.csv
-#  univ: tour_scheduling_university.csv
-
-#CHOOSER_ORIG_COL_NAME: TAZ
 
 DESTINATION_FOR_TOUR_PURPOSE:
   work: workplace_zone_id

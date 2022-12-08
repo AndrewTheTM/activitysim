@@ -66,3 +66,4 @@ income_in_thousands,income_in_thousands,(income / 1000).clip(lower=0)
 income_segment,income_segment,"pd.cut(income_in_thousands, bins=[-np.inf, 50, 100, 150, np.inf], labels=[1, 2, 3, 4]).astype(int)"
 is_fulltime_worker,is_fulltime_worker,"((age_16_p) & (wkhp >=35) & (wkw>=1) & (wkw<=4) & (~esr.isin([3,6])))"
 is_parttime_worker,is_parttime_worker,"((age_16_p) & (~esr.isin([3,6])) & (is_fulltime_worker == False))"
+NAICSP,NAICSP,"persons.NAICSP.astype(str)"

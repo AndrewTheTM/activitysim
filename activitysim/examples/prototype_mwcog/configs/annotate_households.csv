@@ -31,6 +31,7 @@ non_family,non_family,households.HHT.isin(HHT_NONFAMILY)
 family,family,households.HHT.isin(HHT_FAMILY)
 home_is_urban,home_is_urban,"reindex(land_use.AREATYPE, households.home_zone_id) < setting('urban_threshold')"
 home_is_rural,home_is_rural,"reindex(land_use.AREATYPE, households.home_zone_id) > setting('rural_threshold')"
+,home_jurisdiction,"reindex(land_use.JURCODE, households.home_zone_id)"
 #,, default for work and school location logsums before auto_ownership model is run
 ,auto_ownership,households.auto_ownership
 TAZ column to match settings file,TAZ,households.home_zone_id

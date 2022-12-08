@@ -88,6 +88,7 @@ preprocessor:
   DF: choosers
   TABLES:
     - land_use
+    - vehicles
     - tours
 
 nontour_preprocessor:
@@ -95,11 +96,20 @@ nontour_preprocessor:
   DF: choosers
   TABLES:
     - land_use
+    #- vehicles
+    
+annotate_tours:
+  SPEC: annotate_tours_tour_mode_choice
+  DF: choosers
+  TABLES:
+    - tours
+    - vehicles
 
 # to reduce memory needs filter chooser table to these fields
 LOGSUM_CHOOSER_COLUMNS:
   - tour_type
   - hhsize
+  - ptype
   - density_index
   - age
   - age_16_p
@@ -110,5 +120,8 @@ LOGSUM_CHOOSER_COLUMNS:
   - num_workers
   - value_of_time
   - free_parking_at_work
+  - start
+  - out_period
+  - end
 
 MODE_CHOICE_LOGSUM_COLUMN_NAME: mode_choice_logsum

@@ -45,3 +45,4 @@ coef_Calibration_Constant_Departure_eq_18,-0.045958531,F
 coef_Calibration_Constant_Departure_eq_19,-0.099009925,F
 coef_Calibration_Constant_Arrival_eq_20,-0.0698094,F
 coef_Calibration_Constant_Arrival_eq_21,-0.064355276,F
+coef_atwork_mode_choice_logsum,0.5,F

@@ -3,6 +3,10 @@ Description,Target,Expression
 local,_DF_IS_TOUR,'tour_type' in df.columns
 ,number_of_participants,df.number_of_participants if _DF_IS_TOUR else 1
 ,is_joint,(df.tour_category=='joint') if _DF_IS_TOUR else False
+# NT period is used for both early and night periods so start time needs to be adjusted,,
+# additional logic required to handle cases where start times not in dataframe,,
+,start,"np.where((df.duration < 0) & (df.out_period == 'NT'), 5, df.start) if 'start' in df.columns else np.nan"
+,duration,(df.end - start) if 'start' in df.columns else df.duration
 #,,
  local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 ,_parent_tour_mode,"reindex(tours.tour_mode, df.parent_tour_id) if _HAVE_PARENT_TOURS else ''"
@@ -16,6 +20,17 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 ,is_atwork_subtour,(df.tour_category=='atwork') if 'tour_category' in df.columns else False
 ,is_escort,(df.tour_type == 'escort') if _DF_IS_TOUR else False
 ,is_school,(df.tour_type=='school') & (df.is_university==False)  if _DF_IS_TOUR else False
+#Auto operating costs,,
+,parent_tour_veh,"reindex(tours['selected_vehicle'], df['parent_tour_id']) if 'selected_vehicle' in df.columns else np.nan"
+,sov_veh_option,"np.where(is_atwork_subtour, parent_tour_veh, df.get('vehicle_occup_1', np.nan))"
+,sr2_veh_option,"np.where(is_atwork_subtour, parent_tour_veh, df.get('vehicle_occup_2', np.nan))"
+,sr3p_veh_option,"np.where(is_atwork_subtour, parent_tour_veh, df.get('vehicle_occup_3.5', np.nan))"
+,sov_auto_op_cost,"reindex(vehicles.groupby('vehicle_type')['auto_operating_cost'].mean(), pd.Series(sov_veh_option, df.index)) if 'vehicle_occup_1' in df.columns else np.nan"
+,sov_auto_op_cost,"np.where(sov_auto_op_cost.isna() | (pd.Series(sov_veh_option, df.index) == 'non_hh_veh'), costPerMile, sov_auto_op_cost)"
+,sr2_auto_op_cost,"reindex(vehicles.groupby('vehicle_type')['auto_operating_cost'].mean(), pd.Series(sr2_veh_option, df.index)) if 'vehicle_occup_2' in df.columns else np.nan"
+,sr2_auto_op_cost,"np.where(sr2_auto_op_cost.isna() | (pd.Series(sr2_veh_option, df.index) == 'non_hh_veh'), costPerMile, sr2_auto_op_cost)"
+,sr3p_auto_op_cost,"reindex(vehicles.groupby('vehicle_type')['auto_operating_cost'].mean(), pd.Series(sr3p_veh_option, df.index)) if 'vehicle_occup_3.5' in df.columns else np.nan"
+,sr3p_auto_op_cost,"np.where(sr3p_auto_op_cost.isna() | (pd.Series(sr3p_veh_option, df.index) == 'non_hh_veh'), costPerMile, sr3p_auto_op_cost)"
 #,,
 #,c_cost,(0.60 * c_ivt) / df.value_of_time
 #,,
@@ -64,7 +79,7 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 ,_dest_hourly_offpeak_parking_cost,"reindex(land_use.OPRKCST, df[dest_col_name])"
 ,_hourly_peak_parking_cost,"np.where(_free_parking_available, 0, _dest_hourly_peak_parking_cost)"
 ,_hourly_offpeak_parking_cost,"np.where(_free_parking_available, 0, _dest_hourly_offpeak_parking_cost)"
-,daily_parking_cost,"np.where(is_mandatory, _hourly_peak_parking_cost * df.duration/2, _hourly_offpeak_parking_cost * df.duration/2)"
+,daily_parking_cost,"np.where(is_mandatory, _hourly_peak_parking_cost * duration/2, _hourly_offpeak_parking_cost * duration/2)"
 #,,
 ,distance,od_skims['DIST']
 ,sov_available,(odt_skims['SOV_TIME']>0) & (dot_skims['SOV_TIME']>0)
@@ -86,3 +101,6 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 destination in central business district,destination_in_cbd,"(reindex(land_use.AREATYPE, df[dest_col_name]) < setting('cbd_threshold')) * 1"
 #,,FIXME diagnostic
 #,sov_dist_rt,(odt_skims['SOV_DIST'] + dot_skims['SOV_DIST'])
+Transit Fare Subsidy R,trn_fare_subs_r,"100 * rng.lognormal_for_df(df, mu=-0.7496686, sigma=0.6947506, broadcast=True).clip(0.0, 1.0)"
+Student Fare Subsidy,trn_fare_subs_r,"np.where(df.ptype.isin([3,6,7]),100,trn_fare_subs_r)"
+Transit Fare Subsidy Percent,trn_fare_subs_pct,"np.interp(trn_fare_subs_r, [k for k, v in transit_subsidy.items()], [v for k, v in transit_subsidy.items()])"

@@ -21,3 +21,5 @@ Presence of predrive child in HHs,is_pre_drive_child_in_HH,_num_predrive_child>0
 has_young_children,has_young_children,_has_young_children>0
 has_children_6_to_12,has_children_6_to_12,_has_children_6_to_12>0
 hh_child,hh_child,"reindex(households.num_children, persons.household_id)"
+home_zone_id,home_zone_id,"reindex(households.home_zone_id, persons.household_id)"
+home_juris,home_jurisdiction,"reindex(households.home_jurisdiction, persons.household_id)"

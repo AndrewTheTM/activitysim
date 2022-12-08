@@ -4,11 +4,13 @@ read_skim_cache: False
 write_skim_cache: False
 
 #alternate dir to read/write skim cache (defaults to output_dir)
-#cache_dir: data/cache
+cache_dir: data/cache
 
 zone_system: 1
 
-taz_skims: skims.omx
+taz_skims: 
+  - skims.omx
+  - COUNTY.omx
 
 skim_time_periods:
     time_window: 1440
@@ -17,3 +19,8 @@ skim_time_periods:
     labels: ['NT', 'AM', 'MD', 'PM', 'NT']
 
 #NT is repeated twice as it's on both sides of the day. 
+# NT = 3:00 AM - 6:00 AM (0 - 6)
+# AM = 6:00 AM - 9:00 AM (7 - 12)
+# MD = 9:00 AM - 3:00 PM (13 - 24)
+# PM = 3:00 PM - 7:00 PM (25 - 32)
+# NT = 7:00 PM - 3:00 AM (33 - 48)

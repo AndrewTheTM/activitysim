@@ -9,6 +9,7 @@ SIMULATE_CHOOSER_COLUMNS:
   - old
   - female
   - auto_ownership
+  - home_jurisdiction
 
 SAMPLE_SPEC: workplace_location_sample.csv
 SPEC: workplace_location.csv
