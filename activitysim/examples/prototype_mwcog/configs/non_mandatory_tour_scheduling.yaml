@@ -11,11 +11,12 @@ preprocessor:
     - joint_tour_participants
 
 SIMULATE_CHOOSER_COLUMNS:
-
+  - home_zone_id
   - age
   - female
   - adult
   - ptype
+  - is_university
   - has_pre_school_child_with_mandatory
   - has_driving_age_child_with_mandatory
   - retired_adults_only_hh
@@ -32,7 +33,7 @@ SIMULATE_CHOOSER_COLUMNS:
   - num_add_shop_maint_tours
   - num_add_soc_discr_tours
 
-#LOGSUM_SETTINGS: tour_mode_choice.yaml
+LOGSUM_SETTINGS: tour_mode_choice.yaml
 
 # map : <tour_segment>: <spec_segment>
 # segmentation of tours for processing may differ from segmentation of spec
@@ -72,7 +73,7 @@ SPEC_SEGMENTS:
 ## alts preprocessor keyed by <spec_segment>
 #ALTS_PREPROCESSOR:
 #  escort:
-#    SPEC: non_mandatory_tour_scheduling_escort_annotate_alts_preprocessor.csv
+#    SPEC: tour_scheduling_nonmandatory_escort_annotate_alts_preprocessor.csv
 #    DF: alt_tdd
 #  shopping:
 #    SPEC: non_mandatory_tour_scheduling_shopping_annotate_alts_preprocessor.csv
@@ -90,4 +91,4 @@ SPEC_SEGMENTS:
 #    SPEC: non_mandatory_tour_scheduling_annotate_alts_preprocessor.csv
 #    DF: alt_tdd
 #
-#DESTINATION_FOR_TOUR_PURPOSE: destination
+DESTINATION_FOR_TOUR_PURPOSE: destination

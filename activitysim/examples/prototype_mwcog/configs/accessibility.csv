@@ -4,9 +4,9 @@ Description,Target,Expression
 #,,
 #,, assume peak occurs in AM for outbound and PM for inbound
 peak round trip time,_auPkTime,"skim_od[('SOV_TIME', 'AM')] + skim_do[('SOV_TIME', 'PM')]"
-decay function,_decay, exp(_auPkTime * dispersion_parameter_automobile)
-auto peak retail,auPkRetail,df.RETEMP * _decay
-auto peak total,auPkTotal,df.TOTEMP * _decay
+decay function,_decayauPk, exp(_auPkTime * dispersion_parameter_automobile)
+auto peak retail,auPkRetail,df.RETEMP * _decayauPk
+auto peak total,auPkTotal,df.TOTEMP * _decayauPk
 #,,
 #,, auto off-peak
 #,,
@@ -28,9 +28,10 @@ d-o peak transit ovt,_outOfVehicleTime,"skim_od[('WK_TRN_WK_IWAIT', 'PM')] + ski
 d-o peak transit time,_trPkTime_do,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime)
 peak transit time,_trPkTime,_trPkTime_od + _trPkTime_do
 round trip path is available,_rt_available,(_trPkTime_od > 0) & (_trPkTime_do > 0)
-decay function,_decay,_rt_available * exp(_trPkTime * dispersion_parameter_transit)
-transit peak retail,trPkRetail,df.RETEMP * _decay
-transit peak total,trPkTotal,df.TOTEMP * _decay
+decay function,_decayTrPk,_rt_available * exp(_trPkTime * dispersion_parameter_transit)
+transit peak retail,trPkRetail,df.RETEMP * _decayTrPk
+transit peak total,trPkTotal,df.TOTEMP * _decayTrPk
+transit peak hhs,trPkHH,df.HH * _decayTrPk
 #,,
 #,, transit off-peak
 #,,
@@ -57,3 +58,15 @@ round trip path is available,_rt_available,_nmDist <= maximum_walk_distance
 decay function,_decay,_rt_available * exp(_nmDist * dispersion_parameter_walk)
 retail accessibility,nmRetail,df.RETEMP * _decay
 total accessibility,nmTotal,df.TOTEMP * _decay
+decay function,_decaynm,_rt_available * exp(_nmDist * dispersion_parameter_walk)
+retail accessibility,nmRetail,df.RETEMP * _decaynm
+total accessibility,nmTotal,df.TOTEMP * _decaynm
+auto share,auShare,0.817
+transit share,trShare,0.126
+non mot share,nmShare,0.057
+#constant auto,auConstant,np.log(auShare)
+#constant transit,trConstant,np.log(trShare)
+#constant non mot,nmConstant,np.log(nmShare)
+#(_decaypkauto + _decaynmot * exp(nmot_constant)  + _decaypktrn * exp(trn_constant))* totemp,,
+multimodal total accessibility,TotalAcc,(_decayauPk * auShare + _decayTrPk * trShare + _decaynm * nmShare) * df.TOTEMP
+#,,np.log(exp(auPkTotal) + exp(trPkTotal + trConstant) + exp(nmTotal + nmConstant))

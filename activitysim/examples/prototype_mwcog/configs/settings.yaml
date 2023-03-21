@@ -19,46 +19,40 @@ input_table_list:
   # households (table index 'household_id')
   #
   - tablename: households
-    filename: combined_synthetic_hh_2018.csv
+    filename: synthetic_hh.csv
     index_col: household_id
     rename_columns:
       NP: hhsize
       VEH: auto_ownership
       TAZ: home_zone_id
-    recode_columns:
-      home_zone_id: land_use.zone_id
   #
   # persons (table index 'person_id')
   #
   - tablename: persons
-    filename: combined_synthetic_per_2018.csv
+    filename: synthetic_per.csv
     index_col: person_id
     rename_columns:
       AGEP: age
       hh_id: household_id
-    recode_columns:
-      TAZ: land_use.zone_id
   #
   # land_use (table index 'zone_id')
   #
   - tablename: land_use
-    filename: LU_taz3722_rnd91a_2018_adj_enrollment.csv
+    filename: land_use.csv
     index_col: zone_id
     rename_columns:
       TAZ: zone_id
-    recode_columns:
-      zone_id: zero-based
 
 # convert input CSVs to HDF5 format and save to outputs directory
 # create_input_store: True
 
 # number of households to simulate
-households_sample_size:  100
+#households_sample_size:  100
 # simulate all households
 #households_sample_size: 0
 
 #household_ids: override_household_ids.csv
-
+chunk_training_mode: disabled
 chunk_size: 0
 
 # set false to disable variability check in simple_simulate and interaction_simulate
@@ -69,7 +63,7 @@ check_for_variability: False
 # turn shadow_pricing on and off for all models (e.g. school and work)
 # shadow pricing is deprecated for less than full samples
 # see shadow_pricing.yaml for additional settings
-use_shadow_pricing: False
+use_shadow_pricing: True
 
 
 # - tracing
@@ -77,23 +71,28 @@ use_shadow_pricing: False
 # trace household id; comment out or leave empty for no trace
 # households with all tour types
 #  [ 728370 1234067 1402924 1594625 1595333 1747572 1896849 1931818 2222690 2344951 2677154]
-#trace_hh_id: 94944
+#trace_hh_id: 351231
 
 # trace origin, destination in accessibility calculation; comment out or leave empty for no trace
 # trace_od: [5, 11]
-trace_od:
+#trace_od:
 
+#rng_base_seed: null
 
+# to resume after last successful checkpoint, specify resume_after: _
+#resume_after: auto_ownership_simulate
+households_sample_size: 1000000
 models:
   - initialize_landuse
   - compute_accessibility
   - initialize_households
   - school_location
-  - workplace_location
   - work_from_home
+  - workplace_location
   - transit_pass_subsidy
-  - transit_pass_ownership
+  - av_ownership
   - auto_ownership_simulate
+  - vehicle_type_choice
   - free_parking
   - telecommute_frequency
   - cdap_simulate
@@ -107,6 +106,7 @@ models:
   - non_mandatory_tour_frequency
   - non_mandatory_tour_destination
   - non_mandatory_tour_scheduling
+  - vehicle_allocation
   - tour_mode_choice_simulate
   - atwork_subtour_frequency
   - atwork_subtour_destination
@@ -123,8 +123,7 @@ models:
   - write_tables
   - write_trip_matrices
 
-# to resume after last successful checkpoint, specify resume_after: _
-resume_after:
+
 
 output_tables:
   h5_store: False
@@ -132,36 +131,18 @@ output_tables:
   prefix: final_
   tables:
     - checkpoints
-    - tablename: accessibility
-      decode_columns:
-        zone_id: land_use.zone_id
-    - tablename: land_use
-      decode_columns:
-        zone_id: land_use.zone_id
-    - tablename: households
-      decode_columns:
-        home_zone_id: land_use.zone_id
-        TAZ: land_use.zone_id
-    - tablename: persons
-      decode_columns:
-        home_zone_id: land_use.zone_id
-        TAZ: land_use.zone_id
-        school_zone_id: nonnegative | land_use.zone_id
-        workplace_zone_id: nonnegative | land_use.zone_id
-    - tablename: tours
-      decode_columns:
-        origin: land_use.zone_id
-        destination: land_use.zone_id
-    - tablename: trips
-      decode_columns:
-        origin: land_use.zone_id
-        destination: land_use.zone_id
+    - accessibility
+    - land_use
+    - households
+    - persons
+    - tours
+    - trips
     - joint_tour_participants
 
 # area_types less than this are considered urban
 urban_threshold: 4
 cbd_threshold: 2
-rural_threshold: 6
+rural_threshold: 5
 
 # - value of time
 
@@ -177,5 +158,3 @@ household_median_value_of_time:
   2: 8.81
   3: 10.44
   4: 12.86
-
-recode_pipeline_columns: False

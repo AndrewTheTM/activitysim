@@ -1,6 +1,6 @@
 coefficient_name,value,constrain
-coef_unavailable,-999,T
-coef_one,1,T
+coef_unavailable,-999.0,T
+coef_one,1.0,T
 coef_mode_choice_logsum,1.821,F
 coef_distance_joint,-0.1238,F
 coef_util_distance_work_outbound,-0.049725916,F
@@ -17,3 +17,13 @@ coef_util_distance_atwork,-0.167334597,F
 coef_prox_home_outbound_work,-0.38,F
 coef_prox_home_inbound_work,-0.15,F
 coef_prox_dest_outbound_work,-0.26,F
+coef_ood_work,0.975672691825895,F
+coef_ood_univ,0.34952547864508837,F
+coef_ood_school_1,1.792562866877528,T
+coef_ood_school_2,0.492562866877528,T
+coef_ood_escort,1.9583138505704512,F
+coef_ood_imaint,1.328848016520654,F
+coef_ood_idisc,1.436118018192894,F
+coef_ood_jmaint,1.8778970460587354,F
+coef_ood_jdisc,1.6372482447414292,F
+coef_ood_atwork,0.4205223661271827,F

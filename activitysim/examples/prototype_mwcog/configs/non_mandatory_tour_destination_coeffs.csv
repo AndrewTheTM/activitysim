@@ -43,3 +43,6 @@ coef_dist_female_othdiscr,-0.008809842,F
 coef_dist_hh_child_othdiscr,-0.016829222,F
 coef_dist_zero_auto_othdiscr,0.065231488,F
 coef_dist_veryhigh_inc_othdiscr,-0.008247062,F
+coef_dc_dest_escort,0.0,F
+coef_dc_dest_maint,-2.815562616,F
+coef_dc_dest_discr,-0.676444863,F

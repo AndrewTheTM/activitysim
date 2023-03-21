@@ -1,5 +1,6 @@
 Description,Expression,escort,shopping,eatout,othmaint,social,othdiscr
 local_dist,_DIST@skims['DIST'],1,1,1,1,1,1
+dest_county,_COUNTY@skims['COUNTY'],1,1,1,1,1,1
 util_dist,@_DIST,coef_dist_escort,coef_dist_shopping,0,coef_dist_othmaint,0,coef_dist_othdiscr
 util_dist_squared,"@(_DIST).clip(0,20)**2",0,coef_dist_squared_shopping,0,0,0,coef_dist_squared_othdiscr
 util_dist_cubed,"@(_DIST).clip(0,20)**3",0,coef_dist_cubed_shopping,0,0,0,coef_dist_cubed_othdiscr
@@ -15,5 +16,6 @@ util_dist_zero_auto,@(df['auto_ownership']==0) * _DIST,0,0,0,0,0,coef_dist_zero_
 util_dist_low,@(df['income_segment']==WORK_LOW_SEGMENT_ID) * _DIST,0,0,0,0,0,0
 util_dist_med,@(df['income_segment']==WORK_MED_SEGMENT_ID) * _DIST,0,0,0,0,0,0
 util_dist_very_high,@(df['income_segment']==WORK_VERYHIGH_SEGMENT_ID) * _DIST,0,0,coef_dist_veryhigh_inc_eatout,0,coef_dist_veryhigh_inc_social,coef_dist_veryhigh_inc_othdiscr
+util_dc_dest_correction,@(_COUNTY==0) & (df.home_jurisdiction != 0),coef_dc_dest_escort,coef_dc_dest_maint,coef_dc_dest_discr,coef_dc_dest_maint,coef_dc_dest_discr,coef_dc_dest_discr
 Size variable,@df['size_term'].apply(np.log1p),1,1,1,1,1,1
 No attractions,@df['size_term']==0,-999,-999,-999,-999,-999,-999

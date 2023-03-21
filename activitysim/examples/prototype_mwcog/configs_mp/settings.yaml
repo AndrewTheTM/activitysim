@@ -11,14 +11,11 @@ use_shadow_pricing: False
 households_sample_size: 0
 chunk_size: 200_000_000_000
 #chunk_size: 0
-chunk_training_mode: production
-num_processes: 20
+chunk_training_mode: disabled
+num_processes: 6
 # - tracing
 #trace_hh_id: 1205209
-trace_hh_id: 1086014
 trace_od:
-#trace_hh_id: 1482966
-#trace_od: [5, 11]
 # to resume after last successful checkpoint, specify resume_after: _
 resume_after: 
 models:
@@ -28,10 +25,10 @@ models:
   - initialize_households
   ### mp_households step
   - school_location
-  - workplace_location
   - work_from_home
+  - workplace_location
   - transit_pass_subsidy
-  - transit_pass_ownership
+  - av_ownership
   - auto_ownership_simulate
   - free_parking
   - telecommute_frequency

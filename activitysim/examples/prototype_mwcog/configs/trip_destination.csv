@@ -1,6 +1,9 @@
 Label,Description,Expression,work,univ,school,escort,shopping,eatout,othmaint,social,othdiscr,atwork
-util_size_term,size term,"@np.log1p(size_terms.get(df.dest_taz, df.purpose)) # sharrow: np.log1p(size_terms['sizearray'])",coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one
-util_no_attractions,no attractions,"@size_terms.get(df.dest_taz, df.purpose) == 0 # sharrow: size_terms['sizearray'] == 0",coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable
+util_size_term,size term,"@np.log1p(size_terms.get(df.dest_taz, df.purpose))",coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one,coef_one
+util_no_attractions,no attractions,"@size_terms.get(df.dest_taz, df.purpose) == 0",coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable
+#,_org_to_stop_dist@od_skims['DIST'],1,1,1,1,1,1,1,1,1,1
+#,_stop_to_dest_dist@dp_skims['DIST'],1,1,1,1,1,1,1,1,1,1
+#,_od_distance@op_skims['DIST'],1,1,1,1,1,1,1,1,1,1
 #util_stop_zone_CDB_are_type,#stop zone CBD area type,"@reindex(land_use.area_type, df.dest_taz) < setting('cbd_threshold')",,,,,,,,,,
 util_distance_inbound,distance (calibration adjustment individual - inbound),@(~df.is_joint & ~df.outbound) * (od_skims['DIST'] + dp_skims['DIST']),coef_util_distance_work_outbound,coef_util_distance_univ,coef_util_distance_school,coef_util_distance_escort,coef_util_distance_shopping,coef_util_distance_eatout,coef_util_distance_othmaint,coef_util_distance_social,coef_util_distance_othdiscr,coef_util_distance_atwork
 util_distance_outbound,distance (calibration adjustment individual - outbound),@(~df.is_joint & df.outbound) * (od_skims['DIST'] + dp_skims['DIST']),coef_util_distance_work_inbound,coef_util_distance_univ,coef_util_distance_school,coef_util_distance_escort,coef_util_distance_shopping,coef_util_distance_eatout,coef_util_distance_othmaint,coef_util_distance_social,coef_util_distance_othdiscr,coef_util_distance_atwork
@@ -15,3 +18,7 @@ util_mode_choice_logsum_os,Mode choice logsum from origin to stop,od_logsum,coef
 util_stop_not_accessible_by_this_tour_mode,Can't access stop zone by this tour mode,(od_logsum < -100),coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable
 util_mode_choice_logsum_sd,Mode choice logsum from stop to destination,dp_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum,coef_mode_choice_logsum
 util_dest_not_accessible_by_this_tour_mode,Can't access destination zone by this tour mode,(dp_logsum < -100),coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable,coef_unavailable
+util_ood_ind_dist,,@(~df.is_joint) & ((od_skims['DIST'] + op_skims['DIST'] - dp_skims['DIST']) >= 0.5) & ((od_skims['DIST'] + dp_skims['DIST'] - dp_skims['DIST']) <= 3),coef_ood_work,coef_ood_univ,coef_ood_school_2,coef_ood_escort,coef_ood_imaint,coef_ood_idisc,coef_ood_imaint,coef_ood_idisc,coef_ood_idisc,coef_ood_atwork
+util_ood_joint_dist,,@(df.is_joint) & ((od_skims['DIST'] + op_skims['DIST'] - dp_skims['DIST']) >= 0.5) & ((od_skims['DIST'] + dp_skims['DIST'] - dp_skims['DIST']) <= 3),0,0,0,0,coef_ood_jmaint,coef_ood_jdisc,coef_ood_jmaint,coef_ood_jdisc,coef_ood_jdisc,0
+util_ood_sch_dist,,@(~df.is_joint) & ((od_skims['DIST'] + op_skims['DIST'] - dp_skims['DIST']) >= 0.5) & ((od_skims['DIST'] + dp_skims['DIST'] - dp_skims['DIST']) <= 2),0,0,coef_ood_school_1,0,0,0,0,0,0,0
+

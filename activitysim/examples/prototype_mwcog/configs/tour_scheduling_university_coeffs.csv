@@ -1,5 +1,5 @@
 coefficient_name,value,constrain
-coef_Mode_Choice_Logsum,0.384091138,F
+coef_Mode_Choice_Logsum,0.5,F
 coef_Low_income_lt25000_Departure_before_800_am_Linear,0.246389489,F
 coef_Low_income_lt25000_Duration_lt_4hrs,-0.262288853,F
 coef_Medium_high_income_60k_to_120k_Departure_after_830_am_Linear,-0.039079271,F
