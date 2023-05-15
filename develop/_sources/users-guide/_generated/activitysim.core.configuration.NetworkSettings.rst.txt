@@ -1,5 +1,5 @@
-﻿activitysim.core.configuration.NetworkSettings
-==============================================
+﻿NetworkSettings
+===============
 
 .. currentmodule:: activitysim.core.configuration
 

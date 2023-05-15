@@ -1,601 +1,347 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Core Components &#8212; ActivitySim 1.1.1.dev138+ge11b48ad</title>
-    
+    <title>Core Components &#8212; ActivitySim 1.1.1.dev826+g33ce2c57</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css" />
-    
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'core';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://andrewthetm.github.io/activitysim/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.1.1';
+        </script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Benchmarking" href="benchmarking.html" />
-    <link rel="prev" title="Models" href="models.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="Trip Destination" href="dev-guide/components/trip_destination.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="index.html">
-<p class="title">ActivitySim</p>
-</a>
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="users-guide/index.html">
-  Users Guide
- </a>
-</li>
-
-<li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="dev-guide/index.html">
-  Developers
- </a>
-</li>
-
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
     
-</ul>
-      </div>
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ActivitySim 1.1.1.dev826+g33ce2c57</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="users-guide/index.html">
+                        Users Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="dev-guide/index.html">
+                        Developers
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
       
     </div>
-
-    <div id="navbar-end">
+    
+    
+    <div class="navbar-header-items__end">
       
-      <div class="navbar-end-item">
-        <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-primary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        1.1.1  <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      1.1.1  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
     </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
     <!-- dropdown will be populated by javascript on page load -->
     </div>
-</div>
-
-<!-- NOTE: this JS must live here (not in our global JS file) because it relies
-     on being processed by Jinja before it is run (specifically for replacing
-     variables core and {'json_url': 'https://andrewthetm.github.io/activitysim/switcher.json', 'version_match': '1.1.1'}.
--->
-
-<script type="text/javascript">
-// Check if corresponding page path exists in other version of docs
-// and, if so, go there instead of the homepage of the other docs version
-function checkPageExistsAndRedirect(event) {
-    const currentFilePath = "core.html",
-          tryUrl = event.target.getAttribute("href");
-    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
-    $.ajax({
-        type: 'HEAD',
-        url: tryUrl,
-        // if the page exists, go there
-        success: function() {
-            location.href = tryUrl;
-        }
-    }).fail(function() {
-        location.href = otherDocsHomepage;
-    });
-    // this prevents the browser from following the href of the clicked node
-    // (which is fine because this function takes care of redirecting)
-    return false;
-}
-
-// Populate the version switcher from the JSON config file
-(function () {
-    $.getJSON("https://andrewthetm.github.io/activitysim/switcher.json", function(data, textStatus, jqXHR) {
-        const currentFilePath = "core.html";
-        // create links to the corresponding page in the other docs versions
-        $.each(data, function(index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's 1.1.1 variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "1.1.1") {
-                node.classList.add("active");
-                let btn = document.getElementById("version_switcher_button");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-    });
-})();
-</script>
-      </div>
+  </div>
+`);
+</script></div>
       
     </div>
-  </div>
-</div>
-    </nav>
     
-
-    <div class="container-xl">
-      <div class="row">
-          
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <div class="bd-toc-item active">
-    <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="dev-guide/install.html">
-   Developer Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="development.html">
-   Software Development
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="models.html">
-   Models
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Core Components
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="benchmarking.html">
-   Benchmarking
-  </a>
- </li>
-</ul>
-
   </div>
-</nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
 
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiprocessing">
-   Multiprocessing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-activitysim.core.mp_tasks">
-     API
-    </a>
-   </li>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="users-guide/index.html">
+                        Users Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="dev-guide/index.html">
+                        Developers
+                      </a>
+                    </li>
+                
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-management">
-   Data Management
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#input">
-     Input
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#los">
-     LOS
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#skims">
-     Skims
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pipeline">
-     Pipeline
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#random">
-     Random
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tracing">
-     Tracing
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#utility-expressions">
-   Utility Expressions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conventions">
-     Conventions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-expressions-file">
-     Example Expressions File
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Expressions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling-with-interaction">
-     Sampling with Interaction
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulate">
-     Simulate
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulate-with-interaction">
-     Simulate with Interaction
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id12">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulate-with-sampling-and-interaction">
-     Simulate with Sampling and Interaction
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assign">
-     Assign
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#choice-models">
-   Choice Models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#logit">
-     Logit
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id15">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#person-time-windows">
-   Person Time Windows
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     API
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transit-virtual-path-builder">
-   Transit Virtual Path Builder
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
-     API
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-activitysim.core.pathbuilder_cache">
-     Cache API
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization">
-   Visualization
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-the-summarize-model">
-     Configure the Summarize Model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summary-expressions">
-       Summary Expressions
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#preprocessing">
-       Preprocessing
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-and-run-simwrapper">
-     Install and Run Simwrapper
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#navigate-simwrappper">
-     Navigate SimWrappper
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#helpers">
-   Helpers
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#chunk">
-     Chunk
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id21">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#utilities">
-     Utilities
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#config">
-     Config
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id23">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inject">
-     Inject
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id25">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mem">
-     Mem
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id26">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#output">
-     Output
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
-       API
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tests">
-     Tests
-    </a>
-   </li>
-  </ul>
- </li>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      1.1.1  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dev-guide/install.html">Developer Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-guide/using-sharrow.html">Using Sharrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-guide/skim-dataset.html">Using Skim Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-guide/workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dev-guide/components/index.html">Components</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev-guide/components/trip_destination.html">Trip Destination</a></li>
 </ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Core Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="dev-guide/index.html" class="nav-link">Developers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Core Components</li>
+  </ul>
 </nav>
-              </div>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
-              <div class="toc-item">
+              
+              
                 
-              </div>
-              
-            
-          </div>
-          
-
-          
-          
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
-              
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section id="core-components">
 <h1>Core Components<a class="headerlink" href="#core-components" title="Permalink to this headline">#</a></h1>
 <p>ActivitySim’s core components include features for multiprocessing, data management,
@@ -725,6 +471,19 @@ essentially the same tables and results as if the whole simulation had been run 
 <dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.mp_tasks.allocate_shared_shadow_pricing_buffers">
 <span class="sig-prename descclassname"><span class="pre">activitysim.core.mp_tasks.</span></span><span class="sig-name descname"><span class="pre">allocate_shared_shadow_pricing_buffers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.mp_tasks.allocate_shared_shadow_pricing_buffers" title="Permalink to this definition">#</a></dt>
+<dd><p>This is called by the main process to allocate memory buffer to share with subprocs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>multiprocessing.RawArray</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="activitysim.core.mp_tasks.allocate_shared_shadow_pricing_buffers_choice">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.mp_tasks.</span></span><span class="sig-name descname"><span class="pre">allocate_shared_shadow_pricing_buffers_choice</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.mp_tasks.allocate_shared_shadow_pricing_buffers_choice" title="Permalink to this definition">#</a></dt>
 <dd><p>This is called by the main process to allocate memory buffer to share with subprocs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1416,12 +1175,16 @@ to be shared with subprocesses.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.create_skim_dict">
-<span class="sig-name descname"><span class="pre">create_skim_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skim_tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.create_skim_dict" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">create_skim_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skim_tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_override_offset_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.create_skim_dict" title="Permalink to this definition">#</a></dt>
 <dd><p>Create a new SkimDict of type specified by skim_tag (e.g. ‘taz’, ‘maz’ or ‘tap’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>skim_tag: str</strong></dt><dd></dd>
+<dt><strong>skim_tag</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>_override_offset_int</strong><span class="classifier">int, optional</span></dt><dd><p>Override the offset int for this dictionary.  Use this to set that
+offset to zero when zone id’s have been pre-processed to be zero-based
+contiguous integers.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1443,6 +1206,12 @@ to be shared with subprocesses.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.get_maz_to_taz_series">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_maz_to_taz_series</span></span><a class="headerlink" href="#activitysim.core.los.Network_LOS.get_maz_to_taz_series" title="Permalink to this definition">#</a></dt>
+<dd><p>pd.Series: Index is the MAZ, value is the corresponding TAZ</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1539,6 +1308,26 @@ THREE_ZONE systems have both TAZ and TAP skims</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.map_maz_to_taz">
+<span class="sig-name descname"><span class="pre">map_maz_to_taz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.map_maz_to_taz" title="Permalink to this definition">#</a></dt>
+<dd><p>Convert MAZ’s to TAZ’s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s</strong><span class="classifier">Array-like</span></dt><dd><p>Integer MAZ values</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer TAZ values</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.multiprocess">
 <span class="sig-name descname"><span class="pre">multiprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.multiprocess" title="Permalink to this definition">#</a></dt>
 <dd><p>return True if this is a multiprocessing run (even if it is a main or single-process subprocess)</p>
@@ -1581,8 +1370,44 @@ THREE_ZONE systems have both TAZ and TAP skims</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>numpy.array</dt><dd><p>string time period labels</p>
+<dt>pandas Series</dt><dd><p>string time period labels</p>
 </dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.zarr_file_name">
+<span class="sig-name descname"><span class="pre">zarr_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skim_tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.zarr_file_name" title="Permalink to this definition">#</a></dt>
+<dd><p>Return zarr directory name from network_los settings file for the specified skim_tag (e.g. ‘taz’)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>skim_tag: str (e.g. ‘taz’)</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of str</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="activitysim.core.los.Network_LOS.zarr_pre_encoding">
+<span class="sig-name descname"><span class="pre">zarr_pre_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skim_tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.los.Network_LOS.zarr_pre_encoding" title="Permalink to this definition">#</a></dt>
+<dd><p>Return digital encoding pre-processing before writing to zarr for the specified skim_tag (e.g. ‘taz’)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>skim_tag: str (e.g. ‘taz’)</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list or None</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -2441,7 +2266,7 @@ computed or added columns.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.pipeline.run">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.pipeline.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resume_after</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.pipeline.run" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.pipeline.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resume_after</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_sidecar_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.pipeline.run" title="Permalink to this definition">#</a></dt>
 <dd><p>run the specified list of models, optionally loading checkpoint and resuming after specified
 checkpoint.</p>
 <p>Since we use model_name as checkpoint name, the same model may not be run more than once.</p>
@@ -2454,6 +2279,8 @@ the same list of models, but specify a resume_after point if desired.</p>
 <dt><strong>models</strong><span class="classifier">[str]</span></dt><dd><p>list of model_names</p>
 </dd>
 <dt><strong>resume_after</strong><span class="classifier">str or None</span></dt><dd><p>model_name of checkpoint to load checkpoint and AFTER WHICH to resume model run</p>
+</dd>
+<dt><strong>memory_sidecar_process</strong><span class="classifier">MemorySidecar, optional</span></dt><dd><p>Subprocess that monitors memory usage</p>
 </dd>
 <dt><strong>returns:</strong></dt><dd><p>nothing, but with pipeline open</p>
 </dd>
@@ -2647,7 +2474,7 @@ and well-known index name corresponding to the channel</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="activitysim.core.random.SimpleChannel.normal_for_df">
-<span class="sig-name descname"><span class="pre">normal_for_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lognormal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.random.SimpleChannel.normal_for_df" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">normal_for_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lognormal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.random.SimpleChannel.normal_for_df" title="Permalink to this definition">#</a></dt>
 <dd><p>Return a floating point random number in normal (or lognormal) distribution
 for each row in df using the appropriate random channel for each row.</p>
 <p>Subsequent calls (in the same step) will return the next rand for each df row</p>
@@ -3275,7 +3102,7 @@ included in the utility.</p>
 <h4>API<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
 <span class="target" id="module-activitysim.core.interaction_sample"></span><dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.interaction_sample.interaction_sample">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_sample.</span></span><span class="sig-name descname"><span class="pre">interaction_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternatives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt_col_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_zero_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_sample.interaction_sample" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_sample.</span></span><span class="sig-name descname"><span class="pre">interaction_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternatives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt_col_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_zero_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zone_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_sample.interaction_sample" title="Permalink to this definition">#</a></dt>
 <dd><p>Run a simulation in the situation in which alternatives must
 be merged with choosers because there are interaction terms or
 because alternatives are being sampled.</p>
@@ -3565,8 +3392,9 @@ of <cite>spec</cite>.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.simulate.eval_utilities">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.simulate.</span></span><span class="sig-name descname"><span class="pre">eval_utilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">have_trace_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_all_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_column_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.simulate.eval_utilities" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.simulate.</span></span><span class="sig-name descname"><span class="pre">eval_utilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">have_trace_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_all_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_column_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zone_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.simulate.eval_utilities" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate a utility function as defined in a spec file.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>spec</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>A table of variable specifications and coefficient values.
@@ -3575,19 +3403,40 @@ should have a column for each alternative.</p>
 </dd>
 <dt><strong>choosers</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>locals_d</strong><span class="classifier">Dict or None</span></dt><dd><p>This is a dictionary of local variables that will be the environment
-for an evaluation of an expression that begins with &#64;</p>
+for an evaluation of an expression that begins with “&#64;”.</p>
 </dd>
-<dt><strong>trace_label: str</strong></dt><dd></dd>
-<dt><strong>have_trace_targets: boolean - choosers has targets to trace</strong></dt><dd></dd>
-<dt><strong>trace_all_rows: boolean - trace all chooser rows, bypassing tracing.trace_targets</strong></dt><dd></dd>
+<dt><strong>trace_label</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>have_trace_targets</strong><span class="classifier">bool</span></dt><dd><p>Indicates if <cite>choosers</cite> has targets to trace</p>
+</dd>
+<dt><strong>trace_all_rows</strong><span class="classifier">bool</span></dt><dd><p>Trace all chooser rows, bypassing tracing.trace_targets</p>
+</dd>
 <dt><strong>estimator</strong></dt><dd><p>called to report intermediate table results (used for estimation)</p>
 </dd>
-<dt><strong>trace_column_names: str or list of str</strong></dt><dd><p>chooser columns to include when tracing expression_values</p>
+<dt><strong>trace_column_names: str or list[str]</strong></dt><dd><p>chooser columns to include when tracing expression_values</p>
+</dd>
+<dt><strong>log_alt_losers</strong><span class="classifier">bool, default False</span></dt><dd><p>Write out expressions when all alternatives are unavailable.
+This can be useful for model development to catch errors in
+specifications. Enabling this check does not alter valid results
+but slows down model runs.</p>
+</dd>
+<dt><strong>zone_layer</strong><span class="classifier">{‘taz’, ‘maz’}, optional</span></dt><dd><p>Specify which zone layer of the skims is to be used by sharrow.  You
+cannot use the ‘maz’ zone layer in a one-zone model, but you can use
+the ‘taz’ layer in a two- or three-zone model (e.g. for destination
+pre-sampling). If not given, the default (lowest available) layer is
+used.</p>
+</dd>
+<dt><strong>spec_sh</strong><span class="classifier">pandas.DataFrame, optional</span></dt><dd><p>An alternative <cite>spec</cite> modified specifically for use with sharrow.
+This is meant to give the same result, but allows for some optimizations
+or preprocessing outside the sharrow framework (e.g. to run the Python
+based transit virtual path builder and cache relevant values).</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"></dd>
+<dd class="field-even"><dl class="simple">
+<dt><strong>utilities</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -3786,7 +3635,7 @@ with interaction with the chooser table.</p>
 <h4>API<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h4>
 <span class="target" id="module-activitysim.core.interaction_simulate"></span><dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.interaction_simulate.eval_interaction_utilities">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_simulate.</span></span><span class="sig-name descname"><span class="pre">eval_interaction_utilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_simulate.eval_interaction_utilities" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_simulate.</span></span><span class="sig-name descname"><span class="pre">eval_interaction_utilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zone_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_simulate.eval_interaction_utilities" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute the utilities for a single-alternative spec evaluated in the context of df</p>
 <p>We could compute the utilities for interaction datasets just as we do for simple_simulate
 specs with multiple alternative columns by calling eval_variables and then computing the
@@ -3886,7 +3735,7 @@ and choosing (i.e. making choices), with interaction with the chooser table.</p>
 <h4>API<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
 <span class="target" id="module-activitysim.core.interaction_sample_simulate"></span><dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.interaction_sample_simulate.interaction_sample_simulate">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_sample_simulate.</span></span><span class="sig-name descname"><span class="pre">interaction_sample_simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternatives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_zero_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_prob_choice_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">want_logsums</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_choice_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_sample_simulate.interaction_sample_simulate" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.interaction_sample_simulate.</span></span><span class="sig-name descname"><span class="pre">interaction_sample_simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choosers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternatives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_zero_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_prob_choice_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_alt_losers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">want_logsums</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_choice_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_choice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.interaction_sample_simulate.interaction_sample_simulate" title="Permalink to this definition">#</a></dt>
 <dd><p>Run a simulation in the situation in which alternatives must
 be merged with choosers because there are interaction terms or
 because alternatives are being sampled.</p>
@@ -3921,6 +3770,9 @@ for an evaluation of an expression that begins with &#64;</p>
 when household tracing enabled. No tracing occurs if label is empty or None.</p>
 </dd>
 <dt><strong>trace_choice_name: str</strong></dt><dd><p>This is the column label to be used in trace file csv dump of choices</p>
+</dd>
+<dt><strong>skip_choice: bool</strong></dt><dd><p>This skips the logit choice step and simply returns the alternatives table with logsums
+(used in disaggregate accessibility)</p>
 </dd>
 </dl>
 </dd>
@@ -4624,6 +4476,79 @@ checkpoint the table in another context where it does not know that name.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="activitysim.core.timetable.sharrow_tt_remaining_periods_available">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.timetable.</span></span><span class="sig-name descname"><span class="pre">sharrow_tt_remaining_periods_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tt_windows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt_row_mapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_row_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ender</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.timetable.sharrow_tt_remaining_periods_available" title="Permalink to this definition">#</a></dt>
+<dd><p>Number of periods remaining available after hypothetical scheduling</p>
+<p>This is what’s left after a new tour or trip from <cite>starts</cite> to
+<cite>ends</cite> is hypothetically scheduled.</p>
+<p>Implements MTC TM1 &#64;&#64;remainingPeriodsAvailableAlt</p>
+<p>The start and end periods will always be available after
+scheduling, so ignore them. The periods between start and end
+must be currently unscheduled, so assume they will become
+unavailable after scheduling this window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tt_windows</strong><span class="classifier">array[int8], 2 dimensions</span></dt><dd><p>Array of currently scheduled stuff</p>
+</dd>
+<dt><strong>tt_row_mapper</strong><span class="classifier">numba.typed.Dict[int,int]</span></dt><dd><p>Maps value in the <cite>window_row_ids</cite> to row positions in <cite>windows</cite>.</p>
+</dd>
+<dt><strong>window_row_id</strong><span class="classifier">int</span></dt><dd><p>An identifier for which window row to use.</p>
+</dd>
+<dt><strong>starter</strong><span class="classifier">int</span></dt><dd><p>The starting period of the new tour that will block windows.</p>
+</dd>
+<dt><strong>ender</strong><span class="classifier">int</span></dt><dd><p>The ending period of the new tour that will block windows.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="activitysim.core.timetable.tt_remaining_periods_available">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.timetable.</span></span><span class="sig-name descname"><span class="pre">tt_remaining_periods_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_row_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ends</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.timetable.tt_remaining_periods_available" title="Permalink to this definition">#</a></dt>
+<dd><p>Number of periods remaining available after hypothetical scheduling</p>
+<p>That is, what’s left after something from starts to ends is
+hypothetically scheduled</p>
+<p>Implements MTC TM1 &#64;&#64;remainingPeriodsAvailableAlt</p>
+<p>The start and end periods will always be available after
+scheduling, so ignore them. The periods between start and end
+must be currently unscheduled, so assume they will become
+unavailable after scheduling this window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tt</strong><span class="classifier">TimeTable</span></dt><dd></dd>
+<dt><strong>window_row_ids</strong><span class="classifier">pandas.Series[int]</span></dt><dd><p>series of window_row_ids indexed by tour_id</p>
+</dd>
+<dt><strong>starts</strong><span class="classifier">pandas.Series[int]</span></dt><dd><p>series of tdd_alt ids, index irrelevant (one per window_row_id)</p>
+</dd>
+<dt><strong>ends</strong><span class="classifier">pandas.Series[int]</span></dt><dd><p>series of tdd_alt ids, index irrelevant (one per window_row_id)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>available</strong><span class="classifier">pandas Series int</span></dt><dd><p>number periods available indexed by window_row_ids.index</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="activitysim.core.timetable.tt_slice_windows_by_row_id">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.timetable.</span></span><span class="sig-name descname"><span class="pre">tt_slice_windows_by_row_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tt_window_row_ix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt_windows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_row_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.timetable.tt_slice_windows_by_row_id" title="Permalink to this definition">#</a></dt>
+<dd><p>return windows array slice containing rows for specified window_row_ids
+(in window_row_ids order)</p>
 </dd></dl>
 
 </section>
@@ -5589,9 +5514,17 @@ Silently replace if replace=True.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="activitysim.core.inject.custom_step">
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.inject.</span></span><span class="sig-name descname"><span class="pre">custom_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.inject.custom_step" title="Permalink to this definition">#</a></dt>
+<dd><p>This decorator allows custom steps to potentially overload existing steps.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="activitysim.core.inject.reinject_decorated_tables">
-<span class="sig-prename descclassname"><span class="pre">activitysim.core.inject.</span></span><span class="sig-name descname"><span class="pre">reinject_decorated_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.inject.reinject_decorated_tables" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">activitysim.core.inject.</span></span><span class="sig-name descname"><span class="pre">reinject_decorated_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#activitysim.core.inject.reinject_decorated_tables" title="Permalink to this definition">#</a></dt>
 <dd><p>reinject the decorated tables (and columns)</p>
+<p>This function can be used to completely reset the global state for
+ActivitySim.</p>
 </dd></dl>
 
 </section>
@@ -5723,52 +5656,220 @@ if no output_tables list is specified, then all checkpointed tables will be writ
 </section>
 
 
-              </div>
+                </article>
               
               
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="models.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Models</p>
-        </div>
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dev-guide/components/trip_destination.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Trip Destination</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="benchmarking.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="benchmarking.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Benchmarking</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-              
-          </main>
-          
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiprocessing">Multiprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-activitysim.core.mp_tasks">API</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">Data Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input">Input</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los">LOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skims">Skims</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline">Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random">Random</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracing">Tracing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-expressions">Utility Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conventions">Conventions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-expressions-file">Example Expressions File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-with-interaction">Sampling with Interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate">Simulate</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-with-interaction">Simulate with Interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-with-sampling-and-interaction">Simulate with Sampling and Interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assign">Assign</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-models">Choice Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logit">Logit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#person-time-windows">Person Time Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">API</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transit-virtual-path-builder">Transit Virtual Path Builder</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-activitysim.core.pathbuilder_cache">Cache API</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-summarize-model">Configure the Summarize Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-expressions">Summary Expressions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-run-simwrapper">Install and Run Simwrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigate-simwrappper">Navigate SimWrappper</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helpers">Helpers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk">Chunk</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities">Utilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#config">Config</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inject">Inject</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mem">Mem</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">API</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/core.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <!-- This will display the version of the docs -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><!-- This will display the version of the docs -->
 <p class="last-updated">
-ActivitySim 1.1.1.dev138+ge11b48ad, documentation last updated Dec 21, 2022.<br/>
-</p>
+ActivitySim 1.1.1.dev826+g33ce2c57, documentation last updated May 15, 2023.<br/>
+</p></div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    <br/>
+  </p>
+</div>
+      
     </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
-</p>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
     </div>
-    
-  </div>
-</footer>
+  
+</div>
+
+  </footer>
   </body>
 </html>
