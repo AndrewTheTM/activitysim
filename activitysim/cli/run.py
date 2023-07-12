@@ -8,7 +8,7 @@ import sys
 import warnings
 
 import numpy as np
-
+import activitysim
 from activitysim.core import chunk, config, inject, mem, pipeline, tracing
 
 logger = logging.getLogger(__name__)
@@ -291,6 +291,8 @@ def run(args):
     tracing.config_logger(basic=False)  # update using possibly new logging configs
     config.filter_warnings()
     logging.captureWarnings(capture=True)
+
+    logger.info("ActivitySim Version: %s" % activitysim.__version__)
 
     # directories
     for k in ["configs_dir", "settings_file_name", "data_dir", "output_dir"]:
