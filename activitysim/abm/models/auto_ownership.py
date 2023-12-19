@@ -2,7 +2,8 @@
 # See full license in LICENSE.txt.
 import logging
 
-from activitysim.core import config, expressions, inject, pipeline, simulate, tracing
+from activitysim.core import config, inject, expressions, pipeline, simulate, tracing
+import pandas as pd
 
 from .util import estimation
 

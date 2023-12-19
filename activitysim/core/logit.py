@@ -1,13 +1,16 @@
 # ActivitySim
 # See full license in LICENSE.txt.
+from __future__ import annotations
+
 import logging
+import warnings
 from builtins import object
 
 import numpy as np
 import pandas as pd
 
-from . import config, pipeline, tracing
-from .choosing import choice_maker
+from activitysim.core import tracing, workflow
+from activitysim.core.choosing import choice_maker
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +22,13 @@ PROB_MAX = 1.0
 
 
 def report_bad_choices(
-    bad_row_map, df, trace_label, msg, trace_choosers=None, raise_error=True
+    state: workflow.State,
+    bad_row_map,
+    df,
+    trace_label,
+    msg,
+    trace_choosers=None,
+    raise_error=True,
 ):
     """
 
@@ -59,7 +68,7 @@ def report_bad_choices(
 
     if trace_label:
         logger.info("dumping %s" % trace_label)
-        tracing.write_csv(df[:MAX_DUMP], file_name=trace_label, transpose=False)
+        state.tracing.write_csv(df[:MAX_DUMP], file_name=trace_label, transpose=False)
 
     # log the indexes of the first MAX_DUMP offending rows
     for idx in df.index[:MAX_PRINT].values:
@@ -116,11 +125,14 @@ def utils_to_logsums(utils, exponentiated=False, allow_zero_probs=False):
 
 
 def utils_to_probs(
+    state: workflow.State,
     utils,
     trace_label=None,
     exponentiated=False,
     allow_zero_probs=False,
     trace_choosers=None,
+    overflow_protection: bool = True,
+    return_logsums: bool = False,
 ):
     """
     Convert a table of utilities to probabilities.
@@ -130,7 +142,7 @@ def utils_to_probs(
     utils : pandas.DataFrame
         Rows should be choosers and columns should be alternatives.
 
-    trace_label : str
+    trace_label : str, optional
         label for tracing bad utility or probability values
 
     exponentiated : bool
@@ -146,6 +158,20 @@ def utils_to_probs(
         by report_bad_choices because it can't deduce hh_id from the interaction_dataset
         which is indexed on index values from alternatives df
 
+    overflow_protection : bool, default True
+        Always shift utility values such that the maximum utility in each row is
+        zero.  This constant per-row shift should not fundamentally alter the
+        computed probabilities, but will ensure that an overflow does not occur
+        that will create infinite or NaN values.  This will also provide effective
+        protection against underflow; extremely rare probabilities will round to
+        zero, but by definition they are extremely rare and losing them entirely
+        should not impact the simulation in a measureable fashion, and at least one
+        (and sometimes only one) alternative is guaranteed to have non-zero
+        probability, as long as at least one alternative has a finite utility value.
+        If utility values are certain to be well-behaved and non-extreme, enabling
+        overflow_protection will have no benefit but impose a modest computational
+        overhead cost.
+
     Returns
     -------
     probs : pandas.DataFrame
@@ -158,9 +184,27 @@ def utils_to_probs(
     # utils_arr = utils.values.astype('float')
     utils_arr = utils.values
 
-    if utils_arr.dtype == np.float32 and utils_arr.max() > 85:
+    if allow_zero_probs:
+        if overflow_protection:
+            warnings.warn(
+                "cannot set overflow_protection with allow_zero_probs", stacklevel=2
+            )
+            overflow_protection = utils_arr.dtype == np.float32 and utils_arr.max() > 85
+            if overflow_protection:
+                raise ValueError(
+                    "cannot prevent expected overflow with allow_zero_probs"
+                )
+    else:
+        overflow_protection = overflow_protection or (
+            utils_arr.dtype == np.float32 and utils_arr.max() > 85
+        )
+
+    if overflow_protection:
         # exponentiated utils will overflow, downshift them
-        utils_arr -= utils_arr.max(1, keepdims=True)
+        shifts = utils_arr.max(1, keepdims=True)
+        utils_arr -= shifts
+    else:
+        shifts = None
 
     if not exponentiated:
         # TODO: reduce memory usage by exponentiating in-place.
@@ -176,10 +220,20 @@ def utils_to_probs(
 
     arr_sum = utils_arr.sum(axis=1)
 
+    if return_logsums:
+        with np.errstate(divide="ignore" if allow_zero_probs else "warn"):
+            logsums = np.log(arr_sum)
+        if shifts is not None:
+            logsums += np.squeeze(shifts, 1)
+        logsums = pd.Series(logsums, index=utils.index)
+    else:
+        logsums = None
+
     if not allow_zero_probs:
         zero_probs = arr_sum == 0.0
         if zero_probs.any():
             report_bad_choices(
+                state,
                 zero_probs,
                 utils,
                 trace_label=tracing.extend_trace_label(trace_label, "zero_prob_utils"),
@@ -190,6 +244,7 @@ def utils_to_probs(
     inf_utils = np.isinf(arr_sum)
     if inf_utils.any():
         report_bad_choices(
+            state,
             inf_utils,
             utils,
             trace_label=tracing.extend_trace_label(trace_label, "inf_exp_utils"),
@@ -211,10 +266,18 @@ def utils_to_probs(
 
     probs = pd.DataFrame(utils_arr, columns=utils.columns, index=utils.index)
 
+    if return_logsums:
+        return probs, logsums
     return probs
 
 
-def make_choices(probs, trace_label=None, trace_choosers=None, allow_bad_probs=False):
+def make_choices(
+    state: workflow.State,
+    probs: pd.DataFrame,
+    trace_label: str = None,
+    trace_choosers=None,
+    allow_bad_probs=False,
+) -> tuple[pd.Series, pd.Series]:
     """
     Make choices for each chooser from among a set of alternatives.
 
@@ -252,6 +315,7 @@ def make_choices(probs, trace_label=None, trace_choosers=None, allow_bad_probs=F
     if bad_probs.any() and not allow_bad_probs:
 
         report_bad_choices(
+            state,
             bad_probs,
             probs,
             trace_label=tracing.extend_trace_label(trace_label, "bad_probs"),
@@ -259,7 +323,7 @@ def make_choices(probs, trace_label=None, trace_choosers=None, allow_bad_probs=F
             trace_choosers=trace_choosers,
         )
 
-    rands = pipeline.get_rn_generator().random_for_df(probs)
+    rands = state.get_rn_generator().random_for_df(probs)
 
     choices = pd.Series(choice_maker(probs.values, rands), index=probs.index)
 
@@ -269,7 +333,12 @@ def make_choices(probs, trace_label=None, trace_choosers=None, allow_bad_probs=F
 
 
 def interaction_dataset(
-    choosers, alternatives, sample_size=None, alt_index_id=None, chooser_index_id=None
+    state: workflow.State,
+    choosers,
+    alternatives,
+    sample_size=None,
+    alt_index_id=None,
+    chooser_index_id=None,
 ):
     """
     Combine choosers and alternatives into one table for the purposes
@@ -309,7 +378,7 @@ def interaction_dataset(
     alts_idx = np.arange(numalts)
 
     if sample_size < numalts:
-        sample = pipeline.get_rn_generator().choice_for_df(
+        sample = state.get_rn_generator().choice_for_df(
             choosers, alts_idx, sample_size, replace=False
         )
     else:
