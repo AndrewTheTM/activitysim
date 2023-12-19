@@ -33,7 +33,6 @@ def av_ownership(households_merged, households, chunk_size, trace_hh_id):
     # - preprocessor
     preprocessor_settings = model_settings.get("preprocessor", None)
     if preprocessor_settings:
-
         locals_d = {}
         if constants is not None:
             locals_d.update(constants)
@@ -66,7 +65,6 @@ def av_ownership(households_merged, households, chunk_size, trace_hh_id):
     )
 
     for iteration in range(iterations):
-
         logger.info(
             "Running %s with %d households iteration %d",
             trace_label,

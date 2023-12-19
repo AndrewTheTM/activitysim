@@ -25,25 +25,9 @@ util_asc,Constants,1,,coef_cars1_asc,coef_cars2_asc,coef_cars3_asc,coef_cars4_as
 util_DC,DC Resident,@df.home_jurisdiction == 0,coef_cars0_DC,coef_cars1_DC,0,0,0
 util_Arlington,Arlington County Resident,@df.home_jurisdiction == 3,coef_cars0_Arlington,coef_cars1_Arlington,0,0,0
 util_Alexandria,Alexandria County Resident,@df.home_jurisdiction == 4,coef_cars0_Alexandria,coef_cars1_Alexandria,0,0,0
-#,coef_cars1_DC,coef_cars2_DC,coef_cars3_DC,coef_cars4_DC
-# util_Montgomery,Montgomery County Resident,@df.home_jurisdiction == 1,0,coef_cars1_Montgomery,coef_cars2_Montgomery,coef_cars3_Montgomery,coef_cars4_Montgomery
-# util_PrinceGeorges,Prince Georges County Resident,@df.home_jurisdiction == 2,0,coef_cars1_PrinceGeorges,coef_cars2_PrinceGeorges,coef_cars3_PrinceGeorges,coef_cars4_PrinceGeorges
-# util_Arlington,Arlington County Resident,@df.home_jurisdiction == 3,0,coef_cars1_Arlington,coef_cars2_Arlington,coef_cars3_Arlington,coef_cars4_Arlington
-# util_Alexandria,Alexandria County Resident,@df.home_jurisdiction == 4,0,coef_cars1_Alexandria,coef_cars2_Alexandria,coef_cars3_Alexandria,coef_cars4_Alexandria
-# util_Fairfax,Fairfax County Resident,@df.home_jurisdiction == 5,0,coef_cars1_Fairfax,coef_cars2_Fairfax,coef_cars3_Fairfax,coef_cars4_Fairfax
-# util_Loudoun,Loudoun County Resident,@df.home_jurisdiction == 6,0,coef_cars1_Loudoun,coef_cars2_Loudoun,coef_cars3_Loudoun,coef_cars4_Loudoun
-# util_PrinceWilliam,Prince William County Resident,@df.home_jurisdiction == 7,0,coef_cars1_PrinceWilliam,coef_cars2_PrinceWilliam,coef_cars3_PrinceWilliam,coef_cars4_PrinceWilliam
-# util_Frederick,Frederick County Resident,@df.home_jurisdiction == 9,0,coef_cars1_Frederick,coef_cars2_Frederick,coef_cars3_Frederick,coef_cars4_Frederick
-# util_Howard,Howard County Resident,@df.home_jurisdiction == 10,0,coef_cars1_Howard,coef_cars2_Howard,coef_cars3_Howard,coef_cars4_Howard
-# util_AnneArundel,Anne Arundel County Resident,@df.home_jurisdiction == 11,0,coef_cars1_AnneArundel,coef_cars2_AnneArundel,coef_cars3_AnneArundel,coef_cars4_AnneArundel
-# util_Charles,Charles County Resident,@df.home_jurisdiction == 12,0,coef_cars1_Charles,coef_cars2_Charles,coef_cars3_Charles,coef_cars4_Charles
-# util_Carroll,Carroll County Resident,@df.home_jurisdiction == 14,0,coef_cars1_Carroll,coef_cars2_Carroll,coef_cars3_Carroll,coef_cars4_Carroll
-# util_Calvert,Calvert County Resident,@df.home_jurisdiction == 15,0,coef_cars1_Calvert,coef_cars2_Calvert,coef_cars3_Calvert,coef_cars4_Calvert
-# util_StMarys,St Marys County Resident,@df.home_jurisdiction == 16,0,coef_cars1_StMarys,coef_cars2_StMarys,coef_cars3_StMarys,coef_cars4_StMarys
-# util_KingGeorge,King George County Resident,@df.home_jurisdiction == 17,0,coef_cars1_KingGeorge,coef_cars2_KingGeorge,coef_cars3_KingGeorge,coef_cars4_KingGeorge
-# util_Fredericksburg,Fredricksburg County Resident,@df.home_jurisdiction == 18,0,coef_cars1_Fredericksburg,coef_cars2_Fredericksburg,coef_cars3_Fredericksburg,coef_cars4_Fredericksburg
-# util_Stafford,Stafford County Resident,@df.home_jurisdiction == 19,0,coef_cars1_Stafford,coef_cars2_Stafford,coef_cars3_Stafford,coef_cars4_Stafford
-# util_Spotsylvania,Spotsylvania County Resident,@df.home_jurisdiction == 20,0,coef_cars1_Spotsylvania,coef_cars2_Spotsylvania,coef_cars3_Spotsylvania,coef_cars4_Spotsylvania
-# util_Fauquier,Fauquier County Resident,@df.home_jurisdiction == 21,0,coef_cars1_Fauquier,coef_cars2_Fauquier,coef_cars3_Fauquier,coef_cars4_Fauquier
-# util_Clarke,Clarke County Resident,@df.home_jurisdiction == 22,0,coef_cars1_Clarke,coef_cars2_Clarke,coef_cars3_Clarke,coef_cars4_Clarke
-# util_Jefferson,Jefferson County Resident,@df.home_jurisdiction == 23,0,coef_cars1_Jefferson,coef_cars2_Jefferson,coef_cars3_Jefferson,coef_cars4_Jefferson
+util_montgomery,Montgomery County Resident,@df.home_jurisdiction == 1,coef_cars0_Montgomery,0,0,0,0
+util_princegeorge,Prince Georges County Resident,@df.home_jurisdiction == 2,coef_cars0_PrinceGeorges,0,0,0,0
+util_za_1w,,@df.num_workers == 1,coef_cars0_1w,0,0,0,0
+util_za_2w,,@df.num_workers == 2,coef_cars0_2w,0,0,0,0
+util_za_3w,,@df.num_workers == 3,coef_cars0_3w,0,0,0,0
+util_has_av,auto ownership for AV households,@df.av_ownership,coef_av0,coef_av1,coef_av2,coef_av3,coef_av4

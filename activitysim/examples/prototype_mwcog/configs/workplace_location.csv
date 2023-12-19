@@ -54,3 +54,8 @@ util_Charles_Washington_ASC,Charles_Washington calibration constant,"@np.where((
 util_Charles_Charles_ASC,Charles_Charles calibration constant,"@np.where((df['home_jurisdiction']==12) & (_COUNTY==12), 1, 0)",coef_Charles_Charles_asc
 util_Calvert_Calvert_ASC,Calvert_Calvert calibration constant,"@np.where((df['home_jurisdiction']==15) & (_COUNTY==15), 1, 0)",coef_Calvert_Calvert_asc
 util_Fauquier_Fauquier_ASC,Fauquier_Fauquier calibration constant,"@np.where((df['home_jurisdiction']==21) & (_COUNTY==21), 1, 0)",coef_Fauquier_Fauquier_asc
+util_Carroll_Carroll_asc,"@np.where((df['home_jurisdiction']==14) & (_COUNTY==14), 1, 0)",coef_Carroll_Carroll_asc
+util_Jefferson_Jefferson_asc,"@np.where((df['home_jurisdiction']==23) & (_COUNTY==23), 1, 0)",coef_Jefferson_Jefferson_asc
+util_Clarke_Clarke_asc,"@np.where((df['home_jurisdiction']==22) & (_COUNTY==22), 1, 0)",coef_Clarke_Clarke_asc
+util_StMarys_StMarys_asc,"@np.where((df['home_jurisdiction']==16) & (_COUNTY==16), 1, 0)",coef_StMarys_StMarys_asc
+util_Stafford_Stafford_asc,"@np.where((df['home_jurisdiction']==19) & (_COUNTY==19), 1, 0)",coef_Stafford_Stafford_asc

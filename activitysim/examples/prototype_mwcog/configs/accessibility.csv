@@ -43,7 +43,7 @@ o-d off-peak transit time,_trOpTime_od,(_inVehicleTime + out_of_vehicle_time_wei
 d-o off-peak transit ivt,_inVehicleTime,"skim_do[('WK_TRN_WK_TOTIVT', 'MD')]"
 d-o off-peak transit ovt,_outOfVehicleTime,"skim_do[('WK_TRN_WK_IWAIT', 'MD')] + skim_do[('WK_TRN_WK_XWAIT', 'MD')] + skim_do[('WK_TRN_WK_WACC_EGR', 'MD')] + skim_do[('WK_TRN_WK_WAUX', 'MD')]"
 d-o off-peak transit time,_trOpTime_do,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime)
-peak transit time,_trOpTime,_trOpTime_od + _trOpTime_do
+off-peak transit time,_trOpTime,_trOpTime_od + _trOpTime_do
 #,,FIXME - _rt_available calculation appears to be wrong in mtctm1 accessibility.job
 #round trip path is available,_rt_available,(_trOpTime > 0)
 round trip path is available,_rt_available,(_trOpTime_od > 0) & (_trOpTime_do > 0)

@@ -168,6 +168,7 @@ TOURS_MERGED_CHOOSER_COLUMNS:
   - free_parking_at_work
   - stop_frequency
   - ptype
+  - tour_dest_juris
 
 
 MODE_CHOICE_LOGSUM_COLUMN_NAME: mode_choice_logsum

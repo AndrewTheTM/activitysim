@@ -5,6 +5,7 @@ Adjusted Industrial Employment,ADJ_INDEMP,emp_adjust * land_use.INDEMP
 Adjusted Retail Employment,ADJ_RETEMP,emp_adjust * land_use.RETEMP
 Adjusted Other Employment,ADJ_OTHEMP,emp_adjust * land_use.OTHEMP
 Adjusted Office Employment,ADJ_OFFEMP,emp_adjust * land_use.OFFEMP
+Adjusted Total Employment,ADJ_TOTEMP,emp_adjust * land_use.TOTEMP
 household_density,household_density,land_use.HH / (land_use.LANDAREA * 640)
 employment_density,employment_density,land_use.TOTEMP / (land_use.LANDAREA * 640)
 ,employment_density,employment_density.fillna(0)

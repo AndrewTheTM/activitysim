@@ -20,6 +20,11 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 ,is_atwork_subtour,(df.tour_category=='atwork') if 'tour_category' in df.columns else False
 ,is_escort,(df.tour_type == 'escort') if _DF_IS_TOUR else False
 ,is_school,(df.tour_type=='school') & (df.is_university==False)  if _DF_IS_TOUR else False
+,is_maint,"(df.tour_type.isin(['escort', 'othmaint', 'shopping'])) if _DF_IS_TOUR else False"
+,is_discr,"(df.tour_type.isin(['othdiscr', 'social', 'eatout'])) if _DF_IS_TOUR else False"
+#,,
+,_tour_origin_jur,"reindex(land_use.JURCODE, df[dest_col_name])"
+,dc_origin,(_tour_origin_jur == 0)
 #Auto operating costs,,
 ,parent_tour_veh,"reindex(tours['selected_vehicle'], df['parent_tour_id']) if 'selected_vehicle' in df.columns else np.nan"
 ,sov_veh_option,"np.where(is_atwork_subtour, parent_tour_veh, df.get('vehicle_occup_1', np.nan))"
@@ -42,8 +47,8 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 ,_walk_transit_origin,True
 ,_walk_transit_destination,True
 ,walk_transit_available,_walk_transit_origin & _walk_transit_destination
-,pnr_transit_available,_walk_transit_destination & (df.auto_ownership > 0)
-,knr_transit_available,_walk_transit_origin & _walk_transit_destination
+,pnr_transit_available,_walk_transit_destination & (df.auto_ownership > 0) #& (~is_atwork_subtour) & (~is_maint) & (~is_joint)
+,knr_transit_available,_walk_transit_origin & _walk_transit_destination # & (~is_atwork_subtour) & (~is_maint) & (~is_joint)
 ,origin_walk_time,shortWalk*60/walkSpeed
 ,destination_walk_time,shortWalk*60/walkSpeed
 # RIDEHAIL,,
@@ -89,6 +94,8 @@ local,_DF_IS_TOUR,'tour_type' in df.columns
 ,walk_bm_available,walk_transit_available & (odt_skims['WK_BM_WK_IVTMR']>0) & (dot_skims['WK_BM_WK_IVTMR']>0)
 ,walk_mr_available,walk_transit_available & (odt_skims['WK_MR_WK_IVTMR']>0) & (dot_skims['WK_MR_WK_IVTMR']>0)
 ,walk_cr_available,walk_transit_available & (odt_skims['WK_CR_WK_IVTCR']>0) & (dot_skims['WK_CR_WK_IVTCR']>0)
+,DEBUG_pnr_mr_odt,odt_skims['DR_MR_WK_IVTMR']
+,DEBUG_pnr_mr_dot,dot_skims['WK_MR_DR_IVTMR']
 ,pnr_ab_available,pnr_transit_available & (odt_skims['DR_AB_WK_IVTLB']>0) & (dot_skims['WK_AB_DR_IVTLB']>0)
 ,pnr_bm_available,pnr_transit_available & (odt_skims['DR_BM_WK_IVTMR']>0) & (dot_skims['WK_BM_DR_IVTMR']>0)
 ,pnr_mr_available,pnr_transit_available & (odt_skims['DR_MR_WK_IVTMR']>0) & (dot_skims['WK_MR_DR_IVTMR']>0)
@@ -104,3 +111,5 @@ destination in central business district,destination_in_cbd,"(reindex(land_use.A
 Transit Fare Subsidy R,trn_fare_subs_r,"100 * rng.lognormal_for_df(df, mu=-0.7496686, sigma=0.6947506, broadcast=True).clip(0.0, 1.0)"
 Student Fare Subsidy,trn_fare_subs_r,"np.where(df.ptype.isin([3,6,7]),100,trn_fare_subs_r)"
 Transit Fare Subsidy Percent,trn_fare_subs_pct,"np.interp(trn_fare_subs_r, [k for k, v in transit_subsidy.items()], [v for k, v in transit_subsidy.items()])"
+Origin jurisdiction,origin_juris,"reindex(land_use.JURCODE, df[orig_col_name])"
+Dest jurisdiction,dest_juris,"reindex(land_use.JURCODE, df[dest_col_name])"

@@ -33,3 +33,5 @@ work_zone_area_type,work_zone_area_type,"reindex(land_use.AREATYPE, persons.work
 Usual work location is home,usualWorkLocationIsHome,"np.where(persons.workplace_zone_id == persons.home_zone_id, 1, 0)"
 No usual work location,noUsualWorkLocation,"np.where(persons.workplace_zone_id < 0, 1, 0)"
 workplace jurisdiction,work_jurisdiction,"reindex(land_use.JURCODE, persons.workplace_zone_id)"
+Work location parking cost,work_park_cost,0
+Work location parking cost,work_park_cost,"np.where(persons.workplace_zone_id>=0, reindex(land_use.PRKCST, persons.workplace_zone_id),0)"
