@@ -696,6 +696,10 @@ def compute_disaggregate_accessibility(network_los, chunk_size, trace_hh_id):
             tracing.register_traceable_table(tablename, df)
         del df
 
+    disagg_model_settings = read_disaggregate_accessibility_yaml(
+        "disaggregate_accessibility.yaml"
+    )
+
     # Run location choice
     logsums = get_disaggregate_logsums(network_los, chunk_size, trace_hh_id)
     logsums = {k + "_accessibility": v for k, v in logsums.items()}
@@ -759,5 +763,23 @@ def compute_disaggregate_accessibility(network_los, chunk_size, trace_hh_id):
 
     # Inject accessibility results into pipeline
     [inject.add_table(k, df) for k, df in logsums.items()]
+
+    # available post-processing
+    for annotations in disagg_model_settings.get("postprocess_proto_tables", []):
+        tablename = annotations["tablename"]
+        df = pipeline.get_table(tablename)
+        assert df is not None
+        assert annotations is not None
+        assign_columns(
+            df=df,
+            model_settings={
+                **annotations["annotate"],
+                **disagg_model_settings["suffixes"],
+            },
+            trace_label=tracing.extend_trace_label(
+                "disaggregate_accessibility.postprocess", tablename
+            ),
+        )
+        pipeline.replace_table(tablename, df)
 
     return
