@@ -522,7 +522,7 @@ def run_location_logsums(
     tour_purpose = model_settings["LOGSUM_TOUR_PURPOSE"]
     if isinstance(tour_purpose, dict):
         tour_purpose = tour_purpose[segment_name]
-
+        
     logsums = logsum.compute_logsums(
         choosers,
         tour_purpose,

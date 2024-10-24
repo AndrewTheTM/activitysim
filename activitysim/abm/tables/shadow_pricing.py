@@ -1321,7 +1321,12 @@ def _add_size_tables(disaggregate_suffixes, scale=True):
         # - raw_desired_size
         land_use = inject.get_table("land_use")
         size_terms = inject.get_injectable("size_terms")
+        print(model_selector)
         raw_size = tour_destination_size_terms(land_use, size_terms, model_selector)
+        print("raw size.columns vvv")
+        print(raw_size.columns)
+        print("segment_ids.keys() vvv")
+        print(segment_ids.keys())
         assert set(raw_size.columns) == set(segment_ids.keys())
 
         full_model_run = config.setting("households_sample_size") == 0
