@@ -88,6 +88,7 @@ class SkimInfo(object):
         self.omx_keys = None
         self.base_keys = None
         self.block_offsets = None
+        self.tcad_keys = None
 
         if skim_tag:
             self.load_skim_info(state, skim_tag)
@@ -103,8 +104,15 @@ class SkimInfo(object):
         """
 
         omx_file_names = self.network_los.omx_file_names(skim_tag)
+        tcad_file_names = self.network_los.tcad_file_names(skim_tag)
 
-        self.omx_file_paths = state.filesystem.expand_input_file_list(omx_file_names)
+        
+        if not omx_file_names is None:
+            self.omx_file_paths = state.filesystem.expand_input_file_list(omx_file_names)
+            self.tcad_file_paths = None
+        elif not tcad_file_names is None:
+            self.tcad_file_paths = state.filesystem.expand_input_file_list(tcad_file_names)
+            self.omx_file_paths = None
 
         # ignore any 3D skims not in skim_time_periods
         # specifically, load all skims except those with key2 not in dim3_tags_to_load
@@ -112,39 +120,74 @@ class SkimInfo(object):
         dim3_tags_to_load = skim_time_periods and skim_time_periods.labels
 
         self.omx_manifest = {}  # dict mapping { omx_key: skim_name }
+        if not omx_file_names is None:
+            for omx_file_path in self.omx_file_paths:
+                logger.debug(f"load_skim_info {skim_tag} reading {omx_file_path}")
 
-        for omx_file_path in self.omx_file_paths:
-            logger.debug(f"load_skim_info {skim_tag} reading {omx_file_path}")
-
-            with omx.open_file(omx_file_path, mode="r") as omx_file:
-                # fixme call to omx_file.shape() failing in windows p3.5
-                if self.omx_shape is None:
-                    self.omx_shape = tuple(
-                        int(i) for i in omx_file.shape()
-                    )  # sometimes omx shape are floats!
-                else:
-                    assert self.omx_shape == tuple(
-                        int(i) for i in omx_file.shape()
-                    ), f"Mismatch shape {self.omx_shape} != {omx_file.shape()}"
-
-                for skim_name in omx_file.listMatrices():
-                    if skim_name in self.omx_manifest:
-                        warnings.warn(
-                            f"duplicate skim '{skim_name}' found in {self.omx_manifest[skim_name]} and {omx_file.filename}"
-                        )
-                    self.omx_manifest[skim_name] = omx_file_path
-
-                for m in omx_file.listMappings():
-                    if self.offset_map is None:
-                        self.offset_map_name = m
-                        self.offset_map = omx_file.mapentries(self.offset_map_name)
-                        assert len(self.offset_map) == self.omx_shape[0]
+                with omx.open_file(omx_file_path, mode="r") as omx_file:
+                    # fixme call to omx_file.shape() failing in windows p3.5
+                    if self.omx_shape is None:
+                        self.omx_shape = tuple(
+                            int(i) for i in omx_file.shape()
+                        )  # sometimes omx shape are floats!
                     else:
-                        # don't really expect more than one, but ok if they are all the same
-                        if not (self.offset_map == omx_file.mapentries(m)):
-                            raise RuntimeError(
-                                f"Multiple mappings in omx file: {self.offset_map_name} != {m}"
+                        assert self.omx_shape == tuple(
+                            int(i) for i in omx_file.shape()
+                        ), f"Mismatch shape {self.omx_shape} != {omx_file.shape()}"
+
+                    for skim_name in omx_file.listMatrices():
+                        if skim_name in self.omx_manifest:
+                            warnings.warn(
+                                f"duplicate skim '{skim_name}' found in {self.omx_manifest[skim_name]} and {omx_file.filename}"
                             )
+                        self.omx_manifest[skim_name] = omx_file_path
+
+                    for m in omx_file.listMappings():
+                        if self.offset_map is None:
+                            self.offset_map_name = m
+                            self.offset_map = omx_file.mapentries(self.offset_map_name)
+                            assert len(self.offset_map) == self.omx_shape[0]
+                        else:
+                            # don't really expect more than one, but ok if they are all the same
+                            if not (self.offset_map == omx_file.mapentries(m)):
+                                raise RuntimeError(
+                                    f"Multiple mappings in omx file: {self.offset_map_name} != {m}"
+                            )
+        elif not tcad_file_names is None:
+                import caliperpy
+                for tcad_file_path in self.tcad_file_paths:
+                    logger.debug(f"load_skim_info {skim_tag} reading {tcad_file_path}")
+                    dk = caliperpy.TransCAD.connect() 
+                    mtx = dk.OpenMatrix(str(tcad_file_path), None)
+                    core_names = dk.GetMatrixCoreNames(mtx)
+                    matrix_rows = dk.GetMatrixInfo(mtx)[4]
+                    #TODO: set ROW_MAJOR_LAYOUT based on transcad matrix layout - this is apparently always true (and it likely will be forever, but just in case...)
+                    if self.omx_shape is None:
+                        self.omx_shape = tuple(
+                            int(i) for i in dk.GetMatrixInfo(mtx)[4]
+                        )  # sometimes omx shape are floats!
+                    else:
+                        assert self.omx_shape == tuple(
+                            int(i) for i in dk.GetMatrixInfo(mtx)[4]
+                        ), f"Mismatch shape {self.omx_shape} != {omx_file.shape()}"
+                    for skim_name in dk.GetMatrixCoreNames(mtx):
+                        if skim_name in self.omx_manifest:
+                            warnings.warn(
+                                f"duplicate skim '{skim_name}' found in {self.omx_manifest[skim_name]} and {omx_file.filename}"
+                            )
+                        self.omx_manifest[skim_name] = tcad_file_path
+
+                    for m in dk.GetMatrixIndexNames(mtx):
+                        if self.offset_map is None:
+                            self.offset_map_name = m
+                            self.offset_map = np.array(dk.GetMatrixIndexIDs(mtx, m[0]))
+                            assert len(self.offset_map) == self.omx_shape[0]
+                        # else: #TODO: we should probably do the same check in the case that there are multiple indexes in the matrix
+                        #     # don't really expect more than one, but ok if they are all the same
+                        #     if not (self.offset_map == dk.GetMatrixIndexNames(mtx)):
+                        #         raise RuntimeError(
+                        #             f"Multiple mappings in omx file: {self.offset_map_name} != {m}"
+                        #     )     
 
         # - omx_keys dict maps skim key to omx_key
         # DISTWALK: DISTWALK
@@ -272,7 +315,7 @@ class AbstractSkimFactory(ABC):
         """
         read skims from omx file into skim_data
         """
-
+        
         skim_tag = skim_info.skim_tag
         omx_keys = skim_info.omx_keys
         omx_manifest = skim_info.omx_manifest  # dict mapping { omx_key: skim_name }
@@ -298,13 +341,57 @@ class AbstractSkimFactory(ABC):
                             a = skim_data[:, :, offset]
 
                         # this will trigger omx readslice to read and copy data to skim_data's buffer
-                        omx_data = omx_file[omx_key]
+                        omx_data = np.array(omx_file[omx_key])
                         a[:] = omx_data[:]
 
                         num_skims_loaded += 1
 
             logger.info(
                 f"_read_skims_from_omx loaded {num_skims_loaded} skims from {omx_file_path}"
+            )
+
+    def _read_skims_from_tcad(self, skim_info, skim_data):
+        """
+        read skims from tcad file into skim_data
+        """
+        skim_tag = skim_info.skim_tag
+        omx_keys = skim_info.omx_keys
+        omx_manifest = skim_info.omx_manifest  # dict mapping { omx_key: skim_name }
+
+        for tcad_file_path in skim_info.tcad_file_paths:
+            import caliperpy
+            num_skims_loaded = 0
+            logger.info(f"_read_skims_from_tcad {tcad_file_path}")
+            # read skims into skim_data
+            dk = caliperpy.TransCAD.connect() 
+            mtx = dk.OpenMatrix(str(tcad_file_path), None)
+            for skim_key, omx_key in omx_keys.items():                
+                if omx_manifest[omx_key] == tcad_file_path:
+                    offset = skim_info.block_offsets[skim_key]
+                    logger.debug(
+                        f"_read_skims_from_omx file {tcad_file_path} omx_key {omx_key} "
+                        f"skim_key {skim_key} to offset {offset}"
+                    )
+
+                    if skim_dictionary.ROW_MAJOR_LAYOUT:
+                        a = skim_data[offset, :, :]
+                    else:
+                        a = skim_data[:, :, offset]
+
+                    # this will trigger omx readslice to read and copy data to skim_data's buffer
+                    logger.info(f"Loaing {skim_key}")
+                    if type(skim_key) == str:
+                        mtx_curr = dk.CreateMatrixCurrency(mtx, skim_key, None, None, None)
+                    else:
+                        sk = skim_key[0]+"__"+skim_key[1]
+                        mtx_curr = dk.CreateMatrixCurrency(mtx, sk, None, None, None)
+                    omx_data = np.array(dk.GetMatrixValues(mtx_curr, None, None))
+                    a[:] = omx_data[:]
+
+                    num_skims_loaded += 1
+
+            logger.info(
+                f"_read_skims_from_tcad loaded {num_skims_loaded} skims from {tcad_file_path}"
             )
 
     def _open_existing_readonly_memmap_skim_cache(self, skim_info):
@@ -471,7 +558,10 @@ class NumpyArraySkimFactory(AbstractSkimFactory):
                 return
 
         # read omx skims into skim_buffer (np array)
-        self._read_skims_from_omx(skim_info, skim_data)
+        if not skim_info.omx_file_paths is None:
+            self._read_skims_from_omx(skim_info, skim_data)
+        elif not skim_info.tcad_file_paths is None:
+            self._read_skims_from_tcad(skim_info, skim_data)
 
         if write_cache:
             cache_data = self._create_empty_writable_memmap_skim_cache(skim_info)

@@ -127,6 +127,13 @@ class TAZ_Settings(PydanticBase):
     is not available.
     """
 
+    tcad: str = None
+    """The filename of the data stored in TransCAD format.
+
+    This is treated as a fallback for the raw input data, if ZARR format data
+    is not available.
+    """
+
     zarr: str = None
     """The filename of the data stored in ZARR format.
 

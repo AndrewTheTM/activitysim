@@ -572,6 +572,33 @@ class Network_LOS(object):
             )
         file_names = [file_names] if isinstance(file_names, str) else file_names
         return file_names
+    
+    def tcad_file_names(self, skim_tag):
+        """
+        Return TransCAD file names from network_los settings file for the specified skim_tag (e.g. 'taz')
+
+        Parameters
+        ----------
+        skim_tag: str (e.g. 'taz')
+
+        Returns
+        -------
+        list of str
+        """
+        file_names = self.setting(f"{skim_tag}_skims")
+        if isinstance(file_names, TAZ_Settings):
+            file_names = file_names.tcad
+        if isinstance(file_names, dict):
+            for i in ("file", "files", "tcad"):
+                if i in file_names:
+                    file_names = file_names[i]
+                    break
+        if isinstance(file_names, dict):
+            raise ValueError(
+                f"must specify `{skim_tag}_skims.file` in network_los settings file"
+            )
+        file_names = [file_names] if isinstance(file_names, str) else file_names
+        return file_names
 
     def zarr_file_name(self, skim_tag):
         """
