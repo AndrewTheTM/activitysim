@@ -379,7 +379,6 @@ class AbstractSkimFactory(ABC):
                         a = skim_data[:, :, offset]
 
                     # this will trigger omx readslice to read and copy data to skim_data's buffer
-                    logger.info(f"Loaing {skim_key}")
                     if type(skim_key) == str:
                         mtx_curr = dk.CreateMatrixCurrency(mtx, skim_key, None, None, None)
                     else:
