@@ -259,6 +259,10 @@ def vehicle_allocation(
             choices.loc[choices["alt_choice"] == alt, "choice"] = choosers.loc[
                 choices["alt_choice"] == alt, alt
             ]
+        
+        # ASR finding issues in the categories - the non-household vehicle option is not in the categories
+        if "non_hh_veh" not in choices["choice"].cat.categories:
+            choices["choice"] = choices["choice"].cat.add_categories(['non_hh_veh'])
 
         # set choice for non-household vehicle option
         choices.loc[
