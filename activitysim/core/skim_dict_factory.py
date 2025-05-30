@@ -354,22 +354,21 @@ class AbstractSkimFactory(ABC):
         """
         read skims from tcad file into skim_data
         """
+        import caliperpy
         skim_tag = skim_info.skim_tag
         omx_keys = skim_info.omx_keys
         omx_manifest = skim_info.omx_manifest  # dict mapping { omx_key: skim_name }
-
+        dk = caliperpy.TransCAD.connect() 
         for tcad_file_path in skim_info.tcad_file_paths:
-            import caliperpy
             num_skims_loaded = 0
             logger.info(f"_read_skims_from_tcad {tcad_file_path}")
             # read skims into skim_data
-            dk = caliperpy.TransCAD.connect() 
             mtx = dk.OpenMatrix(str(tcad_file_path), None)
             for skim_key, omx_key in omx_keys.items():                
                 if omx_manifest[omx_key] == tcad_file_path:
                     offset = skim_info.block_offsets[skim_key]
                     logger.debug(
-                        f"_read_skims_from_omx file {tcad_file_path} omx_key {omx_key} "
+                        f"_read_skims_from_tcad file {tcad_file_path} omx_key {omx_key} "
                         f"skim_key {skim_key} to offset {offset}"
                     )
 
@@ -385,6 +384,7 @@ class AbstractSkimFactory(ABC):
                         sk = skim_key[0]+"__"+skim_key[1]
                         mtx_curr = dk.CreateMatrixCurrency(mtx, sk, None, None, None)
                     omx_data = np.array(dk.GetMatrixValues(mtx_curr, None, None))
+                    del(mtx_curr)
                     a[:] = omx_data[:]
 
                     num_skims_loaded += 1
@@ -392,6 +392,7 @@ class AbstractSkimFactory(ABC):
             logger.info(
                 f"_read_skims_from_tcad loaded {num_skims_loaded} skims from {tcad_file_path}"
             )
+        
 
     def _open_existing_readonly_memmap_skim_cache(self, skim_info):
         """
