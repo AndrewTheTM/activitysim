@@ -383,9 +383,11 @@ class AbstractSkimFactory(ABC):
                     else:
                         sk = skim_key[0]+"__"+skim_key[1]
                         mtx_curr = dk.CreateMatrixCurrency(mtx, sk, None, None, None)
-                    omx_data = np.array(dk.GetMatrixValues(mtx_curr, None, None))
+                    logger.debug('ASRDBG: Before dk.GetMatrixValues')
+                    a[:] = np.array(dk.GetMatrixValues(mtx_curr, None, None))
+                    logger.debug('ASRDBG: After dk.GetMatrixValues')
                     del(mtx_curr)
-                    a[:] = omx_data[:]
+                    #a[:] = omx_data[:]
 
                     num_skims_loaded += 1
 
